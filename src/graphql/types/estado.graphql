@@ -1,0 +1,18 @@
+type Estado {
+  cod_edo: Int!
+  nombre: String!
+  Municipio: [Municipio!]
+}
+
+type EstadoResults {
+  infoPage: InfoPage
+  results: [Estado!]
+}
+
+type Query {
+  getEstadosAll(search: SearchEstadoInput): EstadoResults
+}
+
+input SearchEstadoInput {
+  options: OptionsSearch
+}

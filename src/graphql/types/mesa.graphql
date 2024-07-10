@@ -1,0 +1,44 @@
+type Mesa {
+  id: UUID!
+  cod_mesa: Int!
+  electores: Int!
+  apertura: Datatime
+  cierre: Datatime
+  obs_apertura: String!
+  obs_cierre: String!
+  ReporteVotacion: [ReporteVotacion!]
+}
+
+type MesaResults {
+  infoPage: InfoPage
+  results: [Mesa!]
+}
+
+type Query {
+  getMesasAll(search: SearchMesaInput): MesaResults
+  getMesasByCentroVotacion(
+    search: SearchMesaInput
+    ctro_prop: Int!
+  ): MesaResults
+}
+
+type Mutation {
+  aperturaMesa(input: AperturaMesaInp!): Boolean!
+  cierreMesa(input: CierreMesaInp!): Boolean!
+}
+
+input SearchMesaInput {
+  options: OptionsSearch
+}
+
+input AperturaMesaInp {
+  id: UUID!
+  apertura: Datatime!
+  obs_apertura: String!
+}
+
+input CierreMesaInp {
+  id: UUID!
+  cierre: Datatime!
+  obs_cierre: String!
+}

@@ -1,0 +1,49 @@
+type CentroVotacion {
+  ctro_prop: Int!
+  nombre: String!
+  direccion: String!
+  apertura: Datatime
+  cierre: Datatime
+  obs_apertura: String!
+  obs_cierre: String!
+  Mesa: [Mesa!]
+  ReporteVotacion: [ReporteVotacion!]
+  Parroquia: Parroquia
+}
+
+type CentroVotacionResults {
+  infoPage: InfoPage
+  results: [CentroVotacion!]
+}
+
+type Query {
+  getCentroVotacionsAll(
+    search: SearchCentroVotacionInput
+  ): CentroVotacionResults
+  getCentroVotacionsByParroquia(
+    search: SearchCentroVotacionInput
+    cod_par: Int!
+  ): CentroVotacionResults
+}
+
+type Mutation {
+  aperturaCentroVotacion(input: AperturaCentroVotacionInp!): Boolean!
+  cierreCentroVotacion(input: CierreCentroVotacionInp!): Boolean!
+}
+
+input SearchCentroVotacionInput {
+  options: OptionsSearch
+  search: String
+}
+
+input AperturaCentroVotacionInp {
+  ctro_prop: Int!
+  apertura: Datatime!
+  obs_apertura: String!
+}
+
+input CierreCentroVotacionInp {
+  ctro_prop: Int!
+  cierre: Datatime!
+  obs_cierre: String!
+}

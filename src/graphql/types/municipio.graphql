@@ -1,0 +1,22 @@
+type Municipio {
+  cod_mun: Int!
+  nombre: String!
+  Parroquia: [Parroquia!]
+}
+
+type MunicipioResults {
+  infoPage: InfoPage
+  results: [Municipio!]
+}
+
+type Query {
+  getMunicipiosAll(search: SearchMunicipioInput): MunicipioResults
+  getMunicipiosByEstado(
+    search: SearchMunicipioInput
+    cod_edo: Int!
+  ): MunicipioResults
+}
+
+input SearchMunicipioInput {
+  options: OptionsSearch
+}

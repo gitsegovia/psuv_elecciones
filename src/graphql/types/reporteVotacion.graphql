@@ -1,0 +1,42 @@
+type ReporteVotacion {
+  id: UUID!
+  ctro_prop: Int!
+  cod_mesa: Int!
+  a_favor: Int!
+  en_contra: Int!
+  en_cola: Int!
+}
+
+type ReporteVotacionResults {
+  infoPage: InfoPage
+  results: [ReporteVotacion!]
+}
+
+type Query {
+  getReporteVotacionsAll(
+    search: SearchReporteVotacionInput
+  ): ReporteVotacionResults
+  getReporteVotacionsByCentroVotacion(
+    search: SearchReporteVotacionInput
+    ctro_prop: Int!
+  ): ReporteVotacionResults
+  getReporteVotacionsByMesa(
+    search: SearchReporteVotacionInput
+    mesaId: UUID!
+  ): ReporteVotacionResults
+}
+
+type Mutation {
+  setVotacion(input: SetVotacionInp!): Boolean!
+}
+
+input SearchReporteVotacionInput {
+  options: OptionsSearch
+}
+
+input SetVotacionInp {
+  ctro_prop: Int!
+  a_favor: Int!
+  en_contra: Int!
+  en_cola: Int!
+}

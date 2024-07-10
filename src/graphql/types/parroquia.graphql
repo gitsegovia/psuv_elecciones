@@ -1,0 +1,22 @@
+type Parroquia {
+  cod_par: Int!
+  nombre: String!
+  CentroVotacion: [CentroVotacion!]
+}
+
+type ParroquiaResults {
+  infoPage: InfoPage
+  results: [Parroquia!]
+}
+
+type Query {
+  getParroquiasAll(search: SearchParroquiaInput): ParroquiaResults
+  getParroquiasByMunicipio(
+    search: SearchParroquiaInput
+    cod_mun: Int!
+  ): ParroquiaResults
+}
+
+input SearchParroquiaInput {
+  options: OptionsSearch
+}

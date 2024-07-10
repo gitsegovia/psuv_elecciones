@@ -1,0 +1,39 @@
+scalar UUID
+scalar Datatime
+scalar Time
+scalar Date
+
+enum DirectionOrderBy {
+  ASC
+  DESC
+}
+
+enum SystemConnect {
+  Web
+  App
+}
+
+type AuthPayLoad {
+  user: User!
+  token: String!
+}
+
+type InfoPage {
+  count: Int!
+  pages: Int!
+  current: Int!
+  next: Boolean!
+  prev: Boolean!
+}
+
+input OptionsFilterBasic {
+  search: String
+}
+
+input OptionsSearch {
+  orderBy: [String!]
+  direction: [DirectionOrderBy!]
+  limit: Int
+  offset: Int
+  currentPage: Int
+}
