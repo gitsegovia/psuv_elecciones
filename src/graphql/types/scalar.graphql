@@ -33,6 +33,12 @@ type TotalElectores {
   en_cola: Int!
 }
 
+type InfoMesas {
+  aperturadas: Int!
+  cerradas: Int!
+  sin_aperturar: Int!
+}
+
 input OptionsFilterBasic {
   search: String
 }

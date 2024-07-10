@@ -3,6 +3,7 @@ type Municipio {
   nombre: String!
   Parroquia: [Parroquia!]
   TotalElectores: TotalElectores
+  InfoMesas: InfoMesas
 }
 
 type MunicipioResults {

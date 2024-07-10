@@ -57,11 +57,22 @@ export default {
       );
 
       listCentroVotacion.forEach((element, index) => {
-        const initialValue = 0;
-        const sumWithInitial = element.Mesa.reduce(
-          (accumulator, mesa) => accumulator + mesa.electores,
-          initialValue
-        );
+        let sumWithInitial = 0;
+        let sumMesaAp = 0;
+        let sumMesaCe = 0;
+        let sumMesaNull = 0;
+        element.Mesa.forEach((mesa) => {
+          sumWithInitial += mesa.electores;
+          if (mesa.apertura === null && mesa.cierre === null) {
+            sumMesaNull++;
+          }
+          if (mesa.apertura !== null) {
+            sumMesaAp++;
+          }
+          if (mesa.cierre !== null) {
+            sumMesaCe++;
+          }
+        });
         const a_favor =
           element.ReporteVotacion.length > 0
             ? element.ReporteVotacion[0].a_favor
@@ -81,7 +92,13 @@ export default {
           en_contra: en_contra,
           en_cola: en_cola,
         };
+        const InfoMesas = {
+          aperturadas: sumMesaAp,
+          cerradas: sumMesaCe,
+          sin_aperturar: sumMesaNull,
+        };
         listCentroVotacion[index].TotalElectores = TotalElectores;
+        listCentroVotacion[index].InfoMesas = InfoMesas;
       });
 
       const infoPage = {
@@ -150,11 +167,22 @@ export default {
       );
 
       listCentroVotacion.forEach((element, index) => {
-        const initialValue = 0;
-        const sumWithInitial = element.Mesa.reduce(
-          (accumulator, mesa) => accumulator + mesa.electores,
-          initialValue
-        );
+        let sumWithInitial = 0;
+        let sumMesaAp = 0;
+        let sumMesaCe = 0;
+        let sumMesaNull = 0;
+        element.Mesa.forEach((mesa) => {
+          sumWithInitial += mesa.electores;
+          if (mesa.apertura === null && mesa.cierre === null) {
+            sumMesaNull++;
+          }
+          if (mesa.apertura !== null) {
+            sumMesaAp++;
+          }
+          if (mesa.cierre !== null) {
+            sumMesaCe++;
+          }
+        });
         const a_favor =
           element.ReporteVotacion.length > 0
             ? element.ReporteVotacion[0].a_favor
@@ -174,7 +202,14 @@ export default {
           en_contra: en_contra,
           en_cola: en_cola,
         };
+
+        const InfoMesas = {
+          aperturadas: sumMesaAp,
+          cerradas: sumMesaCe,
+          sin_aperturar: sumMesaNull,
+        };
         listCentroVotacion[index].TotalElectores = TotalElectores;
+        listCentroVotacion[index].InfoMesas = InfoMesas;
       });
 
       const infoPage = {

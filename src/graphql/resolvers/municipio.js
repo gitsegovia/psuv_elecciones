@@ -51,16 +51,28 @@ export default {
       const listMunicipio = await models.Municipio.findAll(optionsFind);
 
       listMunicipio.forEach((element, index) => {
-        const initialValue = 0;
         let a_favor = 0;
         let en_contra = 0;
         let en_cola = 0;
-        const sumWithInitial = element.Parroquia.reduce((acc, par) => {
-          const sumWithInitialPar = par.CentroVotacion.reduce((acc, centro) => {
-            const sumWithInitialMesa = centro.Mesa.reduce(
-              (accumulator, mesa) => accumulator + mesa.electores,
-              0
-            );
+        let sumWithInitial = 0;
+        let sumMesaAp = 0;
+        let sumMesaCe = 0;
+        let sumMesaNull = 0;
+
+        element.Parroquia.forEach((par) => {
+          par.CentroVotacion.forEach((centro) => {
+            centro.Mesa.forEach((mesa) => {
+              sumWithInitial += mesa.electores;
+              if (mesa.apertura === null && mesa.cierre === null) {
+                sumMesaNull++;
+              }
+              if (mesa.apertura !== null) {
+                sumMesaAp++;
+              }
+              if (mesa.cierre !== null) {
+                sumMesaCe++;
+              }
+            });
             const a_favor_centro =
               centro.ReporteVotacion.length > 0
                 ? centro.ReporteVotacion[0].a_favor
@@ -76,12 +88,8 @@ export default {
             a_favor += a_favor_centro;
             en_contra += en_contra_centro;
             en_cola += en_cola_centro;
-
-            return acc + sumWithInitialMesa;
-          }, 0);
-
-          return acc + sumWithInitialPar;
-        }, initialValue);
+          });
+        });
 
         const TotalElectores = {
           electores: sumWithInitial,
@@ -89,7 +97,13 @@ export default {
           en_contra: en_contra,
           en_cola: en_cola,
         };
-        listMunicipio[index].TotalElectores = TotalElectores;
+        const InfoMesas = {
+          aperturadas: sumMesaAp,
+          cerradas: sumMesaCe,
+          sin_aperturar: sumMesaNull,
+        };
+        listParroquia[index].TotalElectores = TotalElectores;
+        listParroquia[index].InfoMesas = InfoMesas;
       });
 
       const infoPage = {
@@ -143,16 +157,28 @@ export default {
       const listMunicipio = await models.Municipio.findAll(optionsFind);
 
       listMunicipio.forEach((element, index) => {
-        const initialValue = 0;
         let a_favor = 0;
         let en_contra = 0;
         let en_cola = 0;
-        const sumWithInitial = element.Parroquia.reduce((acc, par) => {
-          const sumWithInitialPar = par.CentroVotacion.reduce((acc, centro) => {
-            const sumWithInitialMesa = centro.Mesa.reduce(
-              (accumulator, mesa) => accumulator + mesa.electores,
-              0
-            );
+        let sumWithInitial = 0;
+        let sumMesaAp = 0;
+        let sumMesaCe = 0;
+        let sumMesaNull = 0;
+
+        element.Parroquia.forEach((par) => {
+          par.CentroVotacion.forEach((centro) => {
+            centro.Mesa.forEach((mesa) => {
+              sumWithInitial += mesa.electores;
+              if (mesa.apertura === null && mesa.cierre === null) {
+                sumMesaNull++;
+              }
+              if (mesa.apertura !== null) {
+                sumMesaAp++;
+              }
+              if (mesa.cierre !== null) {
+                sumMesaCe++;
+              }
+            });
             const a_favor_centro =
               centro.ReporteVotacion.length > 0
                 ? centro.ReporteVotacion[0].a_favor
@@ -168,12 +194,8 @@ export default {
             a_favor += a_favor_centro;
             en_contra += en_contra_centro;
             en_cola += en_cola_centro;
-
-            return acc + sumWithInitialMesa;
-          }, 0);
-
-          return acc + sumWithInitialPar;
-        }, initialValue);
+          });
+        });
 
         const TotalElectores = {
           electores: sumWithInitial,
@@ -181,7 +203,13 @@ export default {
           en_contra: en_contra,
           en_cola: en_cola,
         };
-        listMunicipio[index].TotalElectores = TotalElectores;
+        const InfoMesas = {
+          aperturadas: sumMesaAp,
+          cerradas: sumMesaCe,
+          sin_aperturar: sumMesaNull,
+        };
+        listParroquia[index].TotalElectores = TotalElectores;
+        listParroquia[index].InfoMesas = InfoMesas;
       });
 
       const infoPage = {
