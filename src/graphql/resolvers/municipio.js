@@ -102,8 +102,8 @@ export default {
           cerradas: sumMesaCe,
           sin_aperturar: sumMesaNull,
         };
-        listParroquia[index].TotalElectores = TotalElectores;
-        listParroquia[index].InfoMesas = InfoMesas;
+        listMunicipio[index].TotalElectores = TotalElectores;
+        listMunicipio[index].InfoMesas = InfoMesas;
       });
 
       const infoPage = {
@@ -208,8 +208,8 @@ export default {
           cerradas: sumMesaCe,
           sin_aperturar: sumMesaNull,
         };
-        listParroquia[index].TotalElectores = TotalElectores;
-        listParroquia[index].InfoMesas = InfoMesas;
+        listMunicipio[index].TotalElectores = TotalElectores;
+        listMunicipio[index].InfoMesas = InfoMesas;
       });
 
       const infoPage = {
