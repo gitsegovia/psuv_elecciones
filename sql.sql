@@ -1,3 +1,7 @@
+INSERT INTO public."Estados"(
+	cod_edo, nombre, "createdAt", "updatedAt")
+	VALUES (10, 'EDO. GUARICO', now(), now());
+
 INSERT INTO public."Municipios"(cod_mun, nombre, "createdAt", "updatedAt", cod_edo) VALUES
 (1,'MP. INFANTE' , now(), now(),10),
 (2,'MP. MELLADO' , now(), now(),10),
