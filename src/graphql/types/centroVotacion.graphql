@@ -9,6 +9,7 @@ type CentroVotacion {
   Mesa: [Mesa!]
   ReporteVotacion: [ReporteVotacion!]
   Parroquia: Parroquia
+  TotalElectores: TotalElectores
 }
 
 type CentroVotacionResults {

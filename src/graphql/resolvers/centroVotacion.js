@@ -21,6 +21,8 @@ export default {
           {
             model: models.ReporteVotacion,
             as: "ReporteVotacion",
+            limit: 1,
+            order: [["createdAt", "DESC"]],
           },
         ],
         order: [["ctro_prop", "ASC"]],
@@ -53,6 +55,34 @@ export default {
       const listCentroVotacion = await models.CentroVotacion.findAll(
         optionsFind
       );
+
+      listCentroVotacion.forEach((element, index) => {
+        const initialValue = 0;
+        const sumWithInitial = element.Mesa.reduce(
+          (accumulator, mesa) => accumulator + mesa.electores,
+          initialValue
+        );
+        const a_favor =
+          element.ReporteVotacion.length > 0
+            ? element.ReporteVotacion[0].a_favor
+            : 0;
+        const en_contra =
+          element.ReporteVotacion.length > 0
+            ? element.ReporteVotacion[0].en_contra
+            : 0;
+        const en_cola =
+          element.ReporteVotacion.length > 0
+            ? element.ReporteVotacion[0].en_cola
+            : 0;
+
+        const TotalElectores = {
+          electores: sumWithInitial,
+          a_favor: a_favor,
+          en_contra: en_contra,
+          en_cola: en_cola,
+        };
+        listCentroVotacion[index].TotalElectores = TotalElectores;
+      });
 
       const infoPage = {
         count: listCentroVotacion.length,
@@ -90,6 +120,8 @@ export default {
           {
             model: models.ReporteVotacion,
             as: "ReporteVotacion",
+            limit: 1,
+            order: [["createdAt", "DESC"]],
           },
         ],
         order: [["ctro_prop", "ASC"]],
@@ -116,6 +148,34 @@ export default {
       const listCentroVotacion = await models.CentroVotacion.findAll(
         optionsFind
       );
+
+      listCentroVotacion.forEach((element, index) => {
+        const initialValue = 0;
+        const sumWithInitial = element.Mesa.reduce(
+          (accumulator, mesa) => accumulator + mesa.electores,
+          initialValue
+        );
+        const a_favor =
+          element.ReporteVotacion.length > 0
+            ? element.ReporteVotacion[0].a_favor
+            : 0;
+        const en_contra =
+          element.ReporteVotacion.length > 0
+            ? element.ReporteVotacion[0].en_contra
+            : 0;
+        const en_cola =
+          element.ReporteVotacion.length > 0
+            ? element.ReporteVotacion[0].en_cola
+            : 0;
+
+        const TotalElectores = {
+          electores: sumWithInitial,
+          a_favor: a_favor,
+          en_contra: en_contra,
+          en_cola: en_cola,
+        };
+        listCentroVotacion[index].TotalElectores = TotalElectores;
+      });
 
       const infoPage = {
         count: listCentroVotacion.length,

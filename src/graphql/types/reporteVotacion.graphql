@@ -5,6 +5,7 @@ type ReporteVotacion {
   a_favor: Int!
   en_contra: Int!
   en_cola: Int!
+  createdAt: Datatime!
 }
 
 type ReporteVotacionResults {

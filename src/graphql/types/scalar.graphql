@@ -26,6 +26,13 @@ type InfoPage {
   prev: Boolean!
 }
 
+type TotalElectores {
+  electores: Int!
+  a_favor: Int!
+  en_contra: Int!
+  en_cola: Int!
+}
+
 input OptionsFilterBasic {
   search: String
 }

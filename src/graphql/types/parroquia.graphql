@@ -2,6 +2,7 @@ type Parroquia {
   cod_par: Int!
   nombre: String!
   CentroVotacion: [CentroVotacion!]
+  TotalElectores: TotalElectores
 }
 
 type ParroquiaResults {

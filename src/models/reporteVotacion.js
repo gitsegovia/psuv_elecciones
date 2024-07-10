@@ -41,7 +41,7 @@ const createModel = (sequelize) => {
       },
       en_cola: {
         allowNull: true,
-        type: DATE,
+        type: INTEGER,
       },
     },
     {

@@ -2,6 +2,7 @@ type Municipio {
   cod_mun: Int!
   nombre: String!
   Parroquia: [Parroquia!]
+  TotalElectores: TotalElectores
 }
 
 type MunicipioResults {

@@ -10,7 +10,22 @@ export default {
         include: {
           model: models.Parroquia,
           as: "Parroquia",
-          mun,
+          include: {
+            model: models.CentroVotacion,
+            as: "CentroVotacion",
+            include: [
+              {
+                model: models.Mesa,
+                as: "Mesa",
+              },
+              {
+                model: models.ReporteVotacion,
+                as: "ReporteVotacion",
+                limit: 1,
+                order: [["createdAt", "DESC"]],
+              },
+            ],
+          },
         },
         order: [["cod_mun", "ASC"]],
       };
@@ -34,6 +49,48 @@ export default {
       }
 
       const listMunicipio = await models.Municipio.findAll(optionsFind);
+
+      listMunicipio.forEach((element, index) => {
+        const initialValue = 0;
+        let a_favor = 0;
+        let en_contra = 0;
+        let en_cola = 0;
+        const sumWithInitial = element.Parroquia.reduce((acc, par) => {
+          const sumWithInitialPar = par.CentroVotacion.reduce((acc, centro) => {
+            const sumWithInitialMesa = centro.Mesa.reduce(
+              (accumulator, mesa) => accumulator + mesa.electores,
+              0
+            );
+            const a_favor_centro =
+              centro.ReporteVotacion.length > 0
+                ? centro.ReporteVotacion[0].a_favor
+                : 0;
+            const en_contra_centro =
+              centro.ReporteVotacion.length > 0
+                ? centro.ReporteVotacion[0].en_contra
+                : 0;
+            const en_cola_centro =
+              centro.ReporteVotacion.length > 0
+                ? centro.ReporteVotacion[0].en_cola
+                : 0;
+            a_favor += a_favor_centro;
+            en_contra += en_contra_centro;
+            en_cola += en_cola_centro;
+
+            return acc + sumWithInitialMesa;
+          }, 0);
+
+          return acc + sumWithInitialPar;
+        }, initialValue);
+
+        const TotalElectores = {
+          electores: sumWithInitial,
+          a_favor: a_favor,
+          en_contra: en_contra,
+          en_cola: en_cola,
+        };
+        listMunicipio[index].TotalElectores = TotalElectores;
+      });
 
       const infoPage = {
         count: listMunicipio.length,
@@ -84,6 +141,48 @@ export default {
       }
 
       const listMunicipio = await models.Municipio.findAll(optionsFind);
+
+      listMunicipio.forEach((element, index) => {
+        const initialValue = 0;
+        let a_favor = 0;
+        let en_contra = 0;
+        let en_cola = 0;
+        const sumWithInitial = element.Parroquia.reduce((acc, par) => {
+          const sumWithInitialPar = par.CentroVotacion.reduce((acc, centro) => {
+            const sumWithInitialMesa = centro.Mesa.reduce(
+              (accumulator, mesa) => accumulator + mesa.electores,
+              0
+            );
+            const a_favor_centro =
+              centro.ReporteVotacion.length > 0
+                ? centro.ReporteVotacion[0].a_favor
+                : 0;
+            const en_contra_centro =
+              centro.ReporteVotacion.length > 0
+                ? centro.ReporteVotacion[0].en_contra
+                : 0;
+            const en_cola_centro =
+              centro.ReporteVotacion.length > 0
+                ? centro.ReporteVotacion[0].en_cola
+                : 0;
+            a_favor += a_favor_centro;
+            en_contra += en_contra_centro;
+            en_cola += en_cola_centro;
+
+            return acc + sumWithInitialMesa;
+          }, 0);
+
+          return acc + sumWithInitialPar;
+        }, initialValue);
+
+        const TotalElectores = {
+          electores: sumWithInitial,
+          a_favor: a_favor,
+          en_contra: en_contra,
+          en_cola: en_cola,
+        };
+        listMunicipio[index].TotalElectores = TotalElectores;
+      });
 
       const infoPage = {
         count: listMunicipio.length,
