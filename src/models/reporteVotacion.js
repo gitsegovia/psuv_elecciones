@@ -43,6 +43,10 @@ const createModel = (sequelize) => {
         allowNull: true,
         type: INTEGER,
       },
+      en_duda: {
+        allowNull: true,
+        type: INTEGER,
+      },
     },
     {
       sequelize,

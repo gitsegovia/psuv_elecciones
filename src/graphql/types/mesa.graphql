@@ -7,6 +7,7 @@ type Mesa {
   obs_apertura: String!
   obs_cierre: String!
   ReporteVotacion: [ReporteVotacion!]
+  TotalElectores: TotalElectores
 }
 
 type MesaResults {

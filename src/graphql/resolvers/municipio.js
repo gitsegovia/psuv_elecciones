@@ -54,6 +54,7 @@ export default {
         let a_favor = 0;
         let en_contra = 0;
         let en_cola = 0;
+        let en_duda = 0;
         let sumWithInitial = 0;
         let sumMesaAp = 0;
         let sumMesaCe = 0;
@@ -85,9 +86,14 @@ export default {
               centro.ReporteVotacion.length > 0
                 ? centro.ReporteVotacion[0].en_cola
                 : 0;
+            const en_duda_centro =
+              centro.ReporteVotacion.length > 0
+                ? centro.ReporteVotacion[0].en_duda
+                : 0;
             a_favor += a_favor_centro;
             en_contra += en_contra_centro;
             en_cola += en_cola_centro;
+            en_duda += en_duda_centro;
           });
         });
 
@@ -96,14 +102,15 @@ export default {
           a_favor: a_favor,
           en_contra: en_contra,
           en_cola: en_cola,
+          en_duda: en_duda,
         };
         const InfoMesas = {
           aperturadas: sumMesaAp,
           cerradas: sumMesaCe,
           sin_aperturar: sumMesaNull,
         };
-        listParroquia[index].TotalElectores = TotalElectores;
-        listParroquia[index].InfoMesas = InfoMesas;
+        listMunicipio[index].TotalElectores = TotalElectores;
+        listMunicipio[index].InfoMesas = InfoMesas;
       });
 
       const infoPage = {
@@ -160,6 +167,7 @@ export default {
         let a_favor = 0;
         let en_contra = 0;
         let en_cola = 0;
+        let en_duda = 0;
         let sumWithInitial = 0;
         let sumMesaAp = 0;
         let sumMesaCe = 0;
@@ -191,9 +199,14 @@ export default {
               centro.ReporteVotacion.length > 0
                 ? centro.ReporteVotacion[0].en_cola
                 : 0;
+            const en_duda_centro =
+              centro.ReporteVotacion.length > 0
+                ? centro.ReporteVotacion[0].en_duda
+                : 0;
             a_favor += a_favor_centro;
             en_contra += en_contra_centro;
             en_cola += en_cola_centro;
+            en_duda += en_duda_centro;
           });
         });
 
@@ -202,14 +215,15 @@ export default {
           a_favor: a_favor,
           en_contra: en_contra,
           en_cola: en_cola,
+          en_duda: en_duda,
         };
         const InfoMesas = {
           aperturadas: sumMesaAp,
           cerradas: sumMesaCe,
           sin_aperturar: sumMesaNull,
         };
-        listParroquia[index].TotalElectores = TotalElectores;
-        listParroquia[index].InfoMesas = InfoMesas;
+        listMunicipio[index].TotalElectores = TotalElectores;
+        listMunicipio[index].InfoMesas = InfoMesas;
       });
 
       const infoPage = {

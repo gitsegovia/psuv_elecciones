@@ -85,12 +85,17 @@ export default {
           element.ReporteVotacion.length > 0
             ? element.ReporteVotacion[0].en_cola
             : 0;
+        const en_duda =
+          element.ReporteVotacion.length > 0
+            ? element.ReporteVotacion[0].en_duda
+            : 0;
 
         const TotalElectores = {
           electores: sumWithInitial,
           a_favor: a_favor,
           en_contra: en_contra,
           en_cola: en_cola,
+          en_duda: en_duda,
         };
         const InfoMesas = {
           aperturadas: sumMesaAp,
@@ -195,12 +200,17 @@ export default {
           element.ReporteVotacion.length > 0
             ? element.ReporteVotacion[0].en_cola
             : 0;
+        const en_duda =
+          element.ReporteVotacion.length > 0
+            ? element.ReporteVotacion[0].en_duda
+            : 0;
 
         const TotalElectores = {
           electores: sumWithInitial,
           a_favor: a_favor,
           en_contra: en_contra,
           en_cola: en_cola,
+          en_duda: en_duda,
         };
 
         const InfoMesas = {

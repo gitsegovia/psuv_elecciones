@@ -31,6 +31,7 @@ type TotalElectores {
   a_favor: Int!
   en_contra: Int!
   en_cola: Int!
+  en_duda: Int!
 }
 
 type InfoMesas {

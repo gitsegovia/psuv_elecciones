@@ -5,6 +5,7 @@ type ReporteVotacion {
   a_favor: Int!
   en_contra: Int!
   en_cola: Int!
+  en_duda: Int!
   createdAt: Datatime!
 }
 
@@ -37,7 +38,9 @@ input SearchReporteVotacionInput {
 
 input SetVotacionInp {
   ctro_prop: Int!
+  mesaId: UUID!
   a_favor: Int!
   en_contra: Int!
   en_cola: Int!
+  en_duda: Int!
 }

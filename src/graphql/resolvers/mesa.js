@@ -11,6 +11,8 @@ export default {
           {
             model: models.ReporteVotacion,
             as: "ReporteVotacion",
+            limit: 1,
+            order: [["createdAt", "DESC"]],
           },
         ],
       };
@@ -34,6 +36,33 @@ export default {
       }
 
       const listMesa = await models.Mesa.findAll(optionsFind);
+
+      let a_favor = 0;
+      let en_contra = 0;
+      let en_cola = 0;
+      let en_duda = 0;
+      listMesa.forEach((mesa, index) => {
+        a_favor =
+          mesa.ReporteVotacion.length > 0 ? mesa.ReporteVotacion[0].a_favor : 0;
+        en_contra =
+          mesa.ReporteVotacion.length > 0
+            ? mesa.ReporteVotacion[0].en_contra
+            : 0;
+        en_cola =
+          mesa.ReporteVotacion.length > 0 ? mesa.ReporteVotacion[0].en_cola : 0;
+        en_duda =
+          mesa.ReporteVotacion.length > 0 ? mesa.ReporteVotacion[0].en_duda : 0;
+
+        const TotalElectores = {
+          electores: mesa.electores,
+          a_favor: a_favor,
+          en_contra: en_contra,
+          en_cola: en_cola,
+          en_duda: en_duda,
+        };
+
+        listMesa[index].TotalElectores = TotalElectores;
+      });
 
       const infoPage = {
         count: listMesa.length,
@@ -62,6 +91,8 @@ export default {
           {
             model: models.ReporteVotacion,
             as: "ReporteVotacion",
+            limit: 1,
+            order: [["createdAt", "DESC"]],
           },
         ],
         order: [["cod_mesa", "ASC"]],
@@ -86,6 +117,33 @@ export default {
       }
 
       const listMesa = await models.Mesa.findAll(optionsFind);
+
+      let a_favor = 0;
+      let en_contra = 0;
+      let en_cola = 0;
+      let en_duda = 0;
+      listMesa.forEach((mesa, index) => {
+        a_favor =
+          mesa.ReporteVotacion.length > 0 ? mesa.ReporteVotacion[0].a_favor : 0;
+        en_contra =
+          mesa.ReporteVotacion.length > 0
+            ? mesa.ReporteVotacion[0].en_contra
+            : 0;
+        en_cola =
+          mesa.ReporteVotacion.length > 0 ? mesa.ReporteVotacion[0].en_cola : 0;
+        en_duda =
+          mesa.ReporteVotacion.length > 0 ? mesa.ReporteVotacion[0].en_duda : 0;
+
+        const TotalElectores = {
+          electores: mesa.electores,
+          a_favor: a_favor,
+          en_contra: en_contra,
+          en_cola: en_cola,
+          en_duda: en_duda,
+        };
+
+        listMesa[index].TotalElectores = TotalElectores;
+      });
 
       const infoPage = {
         count: listMesa.length,
