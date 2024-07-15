@@ -9,6 +9,10 @@ export default {
       const optionsFind = {
         include: [
           {
+            model: models.CentroVotacion,
+            as: "CentroVotacion",
+          },
+          {
             model: models.ReporteVotacion,
             as: "ReporteVotacion",
             limit: 1,
@@ -88,6 +92,10 @@ export default {
           ctro_prop,
         },
         include: [
+          {
+            model: models.CentroVotacion,
+            as: "CentroVotacion",
+          },
           {
             model: models.ReporteVotacion,
             as: "ReporteVotacion",

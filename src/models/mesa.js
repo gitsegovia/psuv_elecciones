@@ -13,6 +13,15 @@ const createModel = (sequelize) => {
         onDelete: "CASCADE",
         onUpdate: "CASCADE",
       });
+      Mesa.belongsTo(models.CentroVotacion, {
+        foreignKey: {
+          name: "ctro_prop",
+          field: "ctro_prop",
+        },
+        as: "CentroVotacion",
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+      });
     }
   }
   Mesa.init(

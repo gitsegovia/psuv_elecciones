@@ -8,6 +8,7 @@ type Mesa {
   obs_cierre: String!
   ReporteVotacion: [ReporteVotacion!]
   TotalElectores: TotalElectores
+  CentroVotacion: CentroVotacion
 }
 
 type MesaResults {
