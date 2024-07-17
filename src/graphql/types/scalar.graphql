@@ -34,6 +34,18 @@ type TotalElectores {
   en_duda: Int!
 }
 
+type TotalReportes {
+  total_parroquias: Int
+  total_p_reportado: Int
+  total_p_sin_reportar: Int
+  total_centros: Int
+  total_c_reportado: Int
+  total_c_sin_reportar: Int
+  total_mesas: Int
+  total_m_reportadas: Int
+  total_m_sin_reportar: Int
+}
+
 type InfoMesas {
   aperturadas: Int!
   cerradas: Int!

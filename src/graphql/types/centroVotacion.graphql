@@ -11,6 +11,7 @@ type CentroVotacion {
   Parroquia: Parroquia
   TotalElectores: TotalElectores
   InfoMesas: InfoMesas
+  TotalReportes: TotalReportes
 }
 
 type CentroVotacionResults {

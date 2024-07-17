@@ -45,6 +45,7 @@ export default {
       let en_contra = 0;
       let en_cola = 0;
       let en_duda = 0;
+
       listMesa.forEach((mesa, index) => {
         a_favor =
           mesa.ReporteVotacion.length > 0 ? mesa.ReporteVotacion[0].a_favor : 0;

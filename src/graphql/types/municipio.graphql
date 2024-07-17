@@ -4,6 +4,7 @@ type Municipio {
   Parroquia: [Parroquia!]
   TotalElectores: TotalElectores
   InfoMesas: InfoMesas
+  TotalReportes: TotalReportes
 }
 
 type MunicipioResults {

@@ -13,6 +13,12 @@ export default {
           {
             model: models.Mesa,
             as: "Mesa",
+            include: {
+              model: models.ReporteVotacion,
+              as: "ReporteVotacion",
+              limit: 1,
+              order: [["createdAt", "DESC"]],
+            },
           },
           {
             model: models.Parroquia,
@@ -61,6 +67,13 @@ export default {
         let sumMesaAp = 0;
         let sumMesaCe = 0;
         let sumMesaNull = 0;
+        let total_centros = 0;
+        let total_c_reportado = 0;
+        let total_c_sin_reportar = 0;
+        let total_mesas = element.Mesa.length;
+        let total_m_reportadas = 0;
+        let total_m_sin_reportar = 0;
+
         element.Mesa.forEach((mesa) => {
           sumWithInitial += mesa.electores;
           if (mesa.apertura === null && mesa.cierre === null) {
@@ -71,6 +84,11 @@ export default {
           }
           if (mesa.cierre !== null) {
             sumMesaCe++;
+          }
+          if (mesa.ReporteVotacion.length > 0) {
+            total_m_reportadas++;
+          } else {
+            total_m_sin_reportar++;
           }
         });
         const a_favor =
@@ -102,8 +120,18 @@ export default {
           cerradas: sumMesaCe,
           sin_aperturar: sumMesaNull,
         };
+        const TotalReportes = {
+          total_centros,
+          total_c_reportado,
+          total_c_sin_reportar,
+          total_mesas,
+          total_m_reportadas,
+          total_m_sin_reportar,
+        };
+
         listCentroVotacion[index].TotalElectores = TotalElectores;
         listCentroVotacion[index].InfoMesas = InfoMesas;
+        listCentroVotacion[index].TotalReportes = TotalReportes;
       });
 
       const infoPage = {
@@ -138,6 +166,12 @@ export default {
           {
             model: models.Mesa,
             as: "Mesa",
+            include: {
+              model: models.ReporteVotacion,
+              as: "ReporteVotacion",
+              limit: 1,
+              order: [["createdAt", "DESC"]],
+            },
           },
           {
             model: models.ReporteVotacion,
@@ -176,6 +210,13 @@ export default {
         let sumMesaAp = 0;
         let sumMesaCe = 0;
         let sumMesaNull = 0;
+        let total_centros = 0;
+        let total_c_reportado = 0;
+        let total_c_sin_reportar = 0;
+        let total_mesas = element.Mesa.length;
+        let total_m_reportadas = 0;
+        let total_m_sin_reportar = 0;
+
         element.Mesa.forEach((mesa) => {
           sumWithInitial += mesa.electores;
           if (mesa.apertura === null && mesa.cierre === null) {
@@ -186,6 +227,12 @@ export default {
           }
           if (mesa.cierre !== null) {
             sumMesaCe++;
+          }
+
+          if (mesa.ReporteVotacion.length > 0) {
+            total_m_reportadas++;
+          } else {
+            total_m_sin_reportar++;
           }
         });
         const a_favor =
@@ -218,8 +265,19 @@ export default {
           cerradas: sumMesaCe,
           sin_aperturar: sumMesaNull,
         };
+
+        const TotalReportes = {
+          total_centros,
+          total_c_reportado,
+          total_c_sin_reportar,
+          total_mesas,
+          total_m_reportadas,
+          total_m_sin_reportar,
+        };
+
         listCentroVotacion[index].TotalElectores = TotalElectores;
         listCentroVotacion[index].InfoMesas = InfoMesas;
+        listCentroVotacion[index].TotalReportes = TotalReportes;
       });
 
       const infoPage = {
