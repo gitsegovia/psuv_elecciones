@@ -293,7 +293,7 @@ export default {
         results: listCentroVotacion,
       };
     },
-    getCentroVotacionSinReportar: async (
+    getCentroVotacionReporte: async (
       _,
       { cod_par, reporto },
       { models }
