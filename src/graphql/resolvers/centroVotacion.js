@@ -295,7 +295,7 @@ export default {
     },
     getCentroVotacionSinReportar: async (
       _,
-      { cod_par },
+      { cod_par, reporto },
       { models }
     ) => {
       if (!cod_par) {
@@ -321,6 +321,9 @@ export default {
         optionsFind
       );
 
+      if(reporto){
+        return listCentroVotacion.map(c => c.nombre);
+      }
       const idCentros = listCentroVotacion.map(c => c.ctro_prop);
     
       const listCentroVotacionSinreportar = await models.CentroVotacion.findAll(
