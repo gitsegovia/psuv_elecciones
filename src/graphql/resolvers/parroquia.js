@@ -63,6 +63,8 @@ export default {
         let sumMesaNull = 0;
         let total_centros = element.CentroVotacion.length;
         let total_c_reportado = 0;
+        let total_c_aperturado = 0;
+        let total_c_sin_aperturar = 0;
         let total_c_sin_reportar = 0;
         let total_mesas = 0;
         let total_m_reportadas = 0;
@@ -111,6 +113,12 @@ export default {
           en_cola += en_cola_centro;
           en_duda += en_duda_centro;
 
+          if(centro.apertura === null){
+            total_c_sin_aperturar++;
+          } else {
+            total_c_aperturado++;
+          }
+
           if (sumReportado) {
             total_c_reportado++;
           } else {
@@ -134,6 +142,8 @@ export default {
           total_centros,
           total_c_reportado,
           total_c_sin_reportar,
+          total_c_sin_aperturar,
+          total_c_aperturado,
           total_mesas,
           total_m_reportadas,
           total_m_sin_reportar,

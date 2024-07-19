@@ -41,6 +41,8 @@ type TotalReportes {
   total_centros: Int
   total_c_reportado: Int
   total_c_sin_reportar: Int
+  total_c_aperturado: Int
+  total_c_sin_aperturar: Int
   total_mesas: Int
   total_m_reportadas: Int
   total_m_sin_reportar: Int
