@@ -322,13 +322,27 @@ export default {
       );
 
       if(reporto){
+        const list = []
+        listCentroVotacion.forEach((c) => {
+          if(c.ReporteVotacion.length > 0){
+            list.push(c)
+          }
+        })
         return listCentroVotacion.map(c => c.nombre);
       }
-      const idCentros = listCentroVotacion.map(c => c.ctro_prop);
+
+      const idCentros = []
+        listCentroVotacion.forEach((c) => {
+          if(c.ReporteVotacion.length > 0){
+            idCentros.push(c.ctro_prop)
+          }
+        })
+      
     
       const listCentroVotacionSinreportar = await models.CentroVotacion.findAll(
         {
           where: {
+            cod_par,
             ctro_prop: {
               [Op.notIn]: idCentros
             }
