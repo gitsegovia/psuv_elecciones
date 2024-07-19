@@ -325,10 +325,11 @@ export default {
         const list = []
         listCentroVotacion.forEach((c) => {
           if(c.ReporteVotacion.length > 0){
-            list.push(c)
+            list.push(c.nombre)
           }
         })
-        return listCentroVotacion.map(c => c.nombre);
+        
+        return list;
       }
 
       const idCentros = []
