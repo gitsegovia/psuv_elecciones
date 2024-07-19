@@ -28,6 +28,7 @@ type Query {
     cod_par: Int!
   ): CentroVotacionResults
   getCentroVotacionReporte(cod_par: Int!, reporto: Boolean!): [String!]
+  getCentroVotacionListApertura(cod_par: Int!, apertura: Boolean!): [String!]
 }
 
 type Mutation {

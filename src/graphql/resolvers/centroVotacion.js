@@ -338,6 +338,29 @@ export default {
 
       return listCentroVotacionSinreportar.map(c => c.nombre);
     },
+    getCentroVotacionListApertura: async (
+      _,
+      { cod_par, apertura },
+      { models }
+    ) => {
+      if (!cod_par) {
+        throw new Error("Falta el código de la parroquia");
+      }
+
+      const optionsFind = {
+        where: {
+          cod_par,
+          apertura: apertura ? {[Op.not]: null} : null
+        },
+        order: [["ctro_prop", "ASC"]],
+      };
+
+      const listCentroVotacion = await models.CentroVotacion.findAll(
+        optionsFind
+      );
+
+        return listCentroVotacion.map(c => c.nombre);
+    },
   },
   Mutation: {
     aperturaCentroVotacion: async (_, { input }, { models }) => {
