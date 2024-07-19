@@ -332,8 +332,8 @@ export default {
           }
         }
       );
-      
-      return listCentroVotacionSinreportar;
+
+      return listCentroVotacionSinreportar.map(c => c.nombre);
     },
   },
   Mutation: {
