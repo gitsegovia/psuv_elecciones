@@ -27,6 +27,7 @@ type Query {
     search: SearchCentroVotacionInput
     cod_par: Int!
   ): CentroVotacionResults
+  getCentroVotacionSinReportar(cod_par: Int!): [String!]
 }
 
 type Mutation {

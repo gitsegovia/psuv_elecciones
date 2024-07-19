@@ -293,6 +293,48 @@ export default {
         results: listCentroVotacion,
       };
     },
+    getCentroVotacionSinReportar: async (
+      _,
+      { cod_par },
+      { models }
+    ) => {
+      if (!cod_par) {
+        throw new Error("Falta el código de la parroquia");
+      }
+
+      const optionsFind = {
+        where: {
+          cod_par,
+        },
+        include: [
+          {
+            model: models.ReporteVotacion,
+            as: "ReporteVotacion",
+            limit: 1,
+            order: [["createdAt", "DESC"]],
+          },
+        ],
+        order: [["ctro_prop", "ASC"]],
+      };
+
+      const listCentroVotacion = await models.CentroVotacion.findAll(
+        optionsFind
+      );
+
+      const idCentros = listCentroVotacion.map(c => c.ctro_prop);
+    
+      const listCentroVotacionSinreportar = await models.CentroVotacion.findAll(
+        {
+          where: {
+            ctro_prop: {
+              [Op.notIn]: idCentros
+            }
+          }
+        }
+      );
+      
+      return listCentroVotacionSinreportar;
+    },
   },
   Mutation: {
     aperturaCentroVotacion: async (_, { input }, { models }) => {
